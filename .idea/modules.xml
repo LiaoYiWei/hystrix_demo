@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hystrix-dashboard/hystrix-dashboard.iml" filepath="$PROJECT_DIR$/hystrix-dashboard/hystrix-dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/hystrix_demo.iml" filepath="$PROJECT_DIR$/.idea/hystrix_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hystrixdemo_example/hystrixdemo.iml" filepath="$PROJECT_DIR$/hystrixdemo_example/hystrixdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hystrixdemo_api/hystrixdemo_api.iml" filepath="$PROJECT_DIR$/hystrixdemo_api/hystrixdemo_api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hystrixdemo_example/hystrixdemo_example.iml" filepath="$PROJECT_DIR$/hystrixdemo_example/hystrixdemo_example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hystrixdemo_server/hystrixdemo_server.iml" filepath="$PROJECT_DIR$/hystrixdemo_server/hystrixdemo_server.iml" />
+    </modules>
+  </component>
+</project>

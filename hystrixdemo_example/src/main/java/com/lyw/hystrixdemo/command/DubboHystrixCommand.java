@@ -57,9 +57,9 @@ public class DubboHystrixCommand extends HystrixCommand<Result> {
         return invoker.invoke(invocation);
     }
 
-//    @Override
-//    protected Result getFallback() {
-//        System.out.println("----exec fall back logic----");
-//        return null;
-//    }
+    @Override
+    protected Result getFallback() {
+        System.out.println("----exec fall back logic----");
+        return null;
+    }
 }

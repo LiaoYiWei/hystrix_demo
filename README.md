@@ -25,13 +25,13 @@
 * 可能的情况下回退并优雅地降级
 * 启用接近实时的监控，警报和操作控制。
 ### 为什么需要Hystrix
-#### 在大中型分布式系统中，通常系统很多依赖(HTTP,hession,Netty,Dubbo等)，如下图:
-![soa-1-640](http://d.pr/i/10UGP+)
+在大中型分布式系统中，通常系统很多依赖(HTTP,hession,Netty,Dubbo等)，如下图:
+![soa-1-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-1-640.png)
 在高并发访问下,这些依赖的稳定性与否对系统的影响非常大,但是依赖有很多不可控问题:如网络连接缓慢，资源繁忙，暂时不可用，服务脱机等.
 如下图：QPS为50的依赖 I 出现不可用，但是其他依赖仍然可用.
-![soa-2-640](http://d.pr/i/10UGP+)
+![soa-2-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-2-640.png)
 当依赖I 阻塞时,大多数服务器的线程池就出现阻塞(BLOCK),影响整个线上服务的稳定性.如下图:
-![soa-3-640](http://d.pr/i/10UGP+)
+![soa-3-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-3-640.png)
 在复杂的分布式架构的应用程序有很多的依赖，都会不可避免地在某些时候失败。高并发的依赖失败时如果没有隔离措施，当前应用服务就有被拖垮的风险。  
 例如:一个依赖30个SOA服务的系统,每个服务99.99%可用。
 ```  
@@ -40,6 +40,29 @@
 换算成时间大约每月有2个小时服务不稳定.  
 随着服务依赖数量的变多，服务不稳定的概率会成指数性提高.  
 ```
+### hystrix如何解决这个问题
+Hystrix包装每个基础依赖关系时，上图中所示的体系结构更改为类似于下图。 每个依赖都是相互隔离的，在延迟发生时可以使其饱和的资源受到限制，并在降级逻辑中进行了说明，该降级逻辑决定在依赖关系中发生任何类型的故障时要做出什么响应：
+![soa-4-isolation-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-4-isolation-640.png)
+
+### hystrix如何实现的
+* 将所有对外部系统（或“依赖关系”）的调用包装在HystrixCommand或HystrixObservableCommand对象中，该对象通常在单独的线程中执行（这是命令模式的一个示例）。
+* 调用时间比设定的临界值更长将调用超时。 有一个默认值，但是对于大多数依赖项，您可以通过“属性”来自定义这些超时值，以使它们比每个依赖项的实测99.5％百分点性能略高。
+* 为每个依赖维护一个小的线程池（或信号量）; 如果它变满了，发往这个依赖关系的请求将被立即拒绝而不是排队。
+* 计量成功，失败（客户端抛出的异常），超时和线程拒绝。
+* 跳闸断路器可以在一段时间内停止对特定服务的所有请求，无论是手动还是自动，如果服务的错误百分比超过阈值。
+* 请求失败，被拒绝，超时或短路时执行备用逻辑。
+* 几乎实时监控指标和配置更改。
+
+### command流程图
+![hystrix-command-flow-chart](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/hystrix-command-flow-chart.png)
+
+### 断路器流程图
+![circuit-breaker-1280](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/circuit-breaker-1280.png)
+
+### 线程池隔离
+ 
+
+
 
 
 

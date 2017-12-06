@@ -26,12 +26,12 @@
 * 启用接近实时的监控，警报和操作控制。
 ### 为什么需要Hystrix
 在大中型分布式系统中，通常系统很多依赖(HTTP,hession,Netty,Dubbo等)，如下图:
-![soa-1-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-1-640.png)
+![soa-1-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-1-640.png)  
 在高并发访问下,这些依赖的稳定性与否对系统的影响非常大,但是依赖有很多不可控问题:如网络连接缓慢，资源繁忙，暂时不可用，服务脱机等.
 如下图：QPS为50的依赖 I 出现不可用，但是其他依赖仍然可用.
-![soa-2-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-2-640.png)
+![soa-2-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-2-640.png)  
 当依赖I 阻塞时,大多数服务器的线程池就出现阻塞(BLOCK),影响整个线上服务的稳定性.如下图:
-![soa-3-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-3-640.png)
+![soa-3-640](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/soa-3-640.png)  
 在复杂的分布式架构的应用程序有很多的依赖，都会不可避免地在某些时候失败。高并发的依赖失败时如果没有隔离措施，当前应用服务就有被拖垮的风险。  
 例如:一个依赖30个SOA服务的系统,每个服务99.99%可用。
 ```  
@@ -60,6 +60,7 @@ Hystrix包装每个基础依赖关系时，上图中所示的体系结构更改�
 ![circuit-breaker-1280](https://raw.githubusercontent.com/LiaoYiWei/hystrix_demo/master/doc/circuit-breaker-1280.png)
 
 ### 线程池隔离
+
  
 
 

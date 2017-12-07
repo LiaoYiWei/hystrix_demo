@@ -1,11 +1,11 @@
 package com.lyw.hystrixdemo;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
+import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
 
@@ -22,5 +22,13 @@ public class HystrixdemoApplication {
 		ServletRegistrationBean registration = new ServletRegistrationBean(new HystrixMetricsStreamServlet(), "/hystrix.stream");
 		return registration;
 	}
+
+//	@Bean
+//	public HystrixRequestContext hystrixRequestContext() {
+//		return HystrixRequestContext.initializeContext();
+//	}
+
+
+
 
 }

@@ -36,5 +36,13 @@ public class DemoUserServiceTest {
         });
     }
 
+    @Test
+    public void collapseRequest() throws InterruptedException {
+        infiniteExecute(() -> {
+            RestTemplate client = new RestTemplate();
+            String forObject = client.getForObject("http://localhost:8080/user/find/1", String.class);
+            return forObject;
+        });
+    }
 
 }

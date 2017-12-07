@@ -21,7 +21,7 @@ public class TestUtil {
                         System.out.println(atomicInteger.incrementAndGet() + "---" + v);
 
                     });
-            Thread.sleep(500L);
+            Thread.sleep(10L);
         }
     }
 }

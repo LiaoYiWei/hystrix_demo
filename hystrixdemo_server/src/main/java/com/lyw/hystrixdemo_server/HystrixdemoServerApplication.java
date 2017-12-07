@@ -11,4 +11,5 @@ public class HystrixdemoServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(HystrixdemoServerApplication.class, args);
     }
+
 }
